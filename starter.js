@@ -56,9 +56,9 @@ const dogProducts = [
     }
 ]
 
-const catProducts = [
+const catProducts = [                        // this is an array
   {
-    name: 'mouse toy', 
+    name: 'mouse toy',                       // this is an object
     colors: ['pink', 'grey', 'black'], 
     category: 2, 
     inventory: 125, 
@@ -74,7 +74,7 @@ const catProducts = [
     displayPrice: 10.00
   }, 
   {
-    name: 'straching post',
+    name: 'scratching post',
     colors: ['tan'],
     category: 2,
     inventory: 40,
@@ -84,7 +84,21 @@ const catProducts = [
 ]
 
 // CODE HERE
+const percentDiscount = (product, discount) => {
+    product.displayPrice = product.basePrice * (1 - discount)
+}
 
+const flatDiscount = (product, discount) => {
+    product.displayPrice = product.basePrice - discount
+}
+
+const speciesDiscount = (arr, callback, discount) => {  // the callback is where we determine if it's a flat or percent discount
+    arr.forEach((product) => {    // 'product' = element
+        callback(product, discount)
+    })
+}
+
+speciesDiscount(dogProducts, flatDiscount, 5)
 
 
 ////////////////////////
