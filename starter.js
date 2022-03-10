@@ -23,7 +23,7 @@ const calculator = (num1, num2, callback) => {
 
 const sum = calculator(4, 2, add)
 const difference = calculator(6, 4, subtract)
-console.log(sum, difference)
+// console.log(sum, difference)
 
 ///////////////////////
 ////// PET STORE //////
@@ -98,7 +98,33 @@ const speciesDiscount = (arr, callback, discount) => {  // the callback is where
     })
 }
 
-speciesDiscount(dogProducts, flatDiscount, 5)
+// speciesDiscount(dogProducts, flatDiscount, 4)
+// console.log(dogProducts)
+
+// speciesDiscount(catProducts, percentDiscount, .25)
+// console.log(catProducts)
+
+const categoryDiscount = (arr, category, callback, discount) => {
+    arr.forEach(product => {
+        if(product.category === category) {
+            callback(product, discount)
+        }
+    })
+}
+
+// categoryDiscount(catProducts, 1, percentDiscount, 0.1)
+// console.log(catProducts)
+
+const inventoryDiscount = (arr, inventory, callback, discount) => {
+    arr.forEach(product => {
+        if(product.inventory > inventory) {
+            callback(product, discount)
+        }
+    })
+}
+
+inventoryDiscount(catProducts, 100, percentDiscount, 0.3)
+// console.log(catProducts)
 
 
 ////////////////////////
@@ -172,6 +198,13 @@ const copyArrToSnakeCase = arr => {
 
 const colors = ['red', 'blue', 'yellow', 'green', 'orange']
 
+colors.forEach((color, index) => {
+    // console.log(`${color} at index ${index}`)
+})
+
+const mappedColors = colors.map(color => `pink`)
+// console.log(mappedColors)
+
 // const mappedColors // = colors.map()
 
 /*
@@ -186,7 +219,11 @@ const formalNames = ['Bernard', 'Elizabeth', 'Conrad', 'Mary Margaret']
 
 const formalGreeting = names => {
     // CODE HERE
+    const greeting = names.map(name => `Hello, ${name}`)
+    return greeting
 }
+
+// console.log(formalGreeting(formalNames))
 
 // Call formalGreeting passing in the formalNames array
 
@@ -200,20 +237,23 @@ const formalGreeting = names => {
 
 const places = ['Binghampton', 'Albany', 'New York', 'Ithaca', 'Auburn', 'Rochester', 'Buffalo']
 
-// const placesThatStartWithA // = places.filter()
+// const placesThatStartWithA = places.filter(place => place.startsWith(`A`))
+    // uses the 'implicit return' to put everything on the same line
+
+const placesThatStartWithA = places.filter(place => {
+    return place.startsWith(`A`)
+}) // same as above, just written out in more lines
+
+// console.log(placesThatStartWithA)
 
 
 /*
     Create a function called identifier that uses the filter higher order 
-    array method to filter over the provided jobs array of objects
+array method to filter over the provided jobs array of objects
 
-    The function should return the object of the person with a job as a programmer
-    
-    Make sure to use the arrow function in conjunction with the filter method
-    
-    Your returned value should be a single object, not an array with one object inside of it
-    
-    Use arrow functions and the filter method
+    The function should return the object of the person with a job as a programmer. Make sure to use the arrow 
+    function in conjunction with the filter method. Your returned value should be a single object, not an 
+    array with one object inside of it. Use arrow functions and the filter method
 */
 
 // Do not edit the code below.
@@ -226,15 +266,18 @@ let jobs = [
 // Do not edit the code above.
 
 // CODE HERE
+const identifier = (arr) => {
+    let person = arr.filter(person => person.programmer)
+    return person[0]
+}
 
 // call the function passing in the jobs array
-
+// console.log(identifier(jobs))
 
 //// REDUCE ////
 
 /*
-    Edit the productOfArray function and use 
-    the built in .reduce method to loop over the numbers parameter
+    Edit the productOfArray function and use the built in .reduce method to loop over the numbers parameter
     and return the product of all the numbers in the array
 
     Make sure to use arrow functions combined with the reduce method    
@@ -242,12 +285,12 @@ let jobs = [
 
 const numsToReduce = [43, 7, 24, 79, 290]
 
-const productOfArray = numbers => {
-    // Code here
-}
+// const productOfArray = numbers => {
+//     return numbers.reduce((acc, cv) => acc * cv)       // acc = accumulator, cv = current value
+// }
 
 // CODE HERE
-
+// console.log(productOfArray(numsToReduce))
 
 // call productOfArray passing in numsToReduce
 
@@ -278,4 +321,5 @@ const expenses = [
     }
 ]
 
-// const remaining // = expenses.reduce(//callback, //initial value)
+const remaining = expenses.reduce((acc, cv) => acc - cv.amount, 2000)
+console.log(remaining)
